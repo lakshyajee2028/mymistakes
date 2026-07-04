@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Mistakes - Home</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container { text-align: center; width: 100%; max-width: 500px; }
+        header h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(45deg, #38bdf8, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        header p { color: #94a3b8; margin-bottom: 40px; font-size: 1rem; }
+        
+        /* Main 3 Big Buttons */
+        .menu-container { display: flex; flex-direction: column; gap: 20px; }
+        .menu-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            padding: 25px;
+            border-radius: 20px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            text-decoration: none;
+            display: block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .menu-btn:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #38bdf8;
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.2);
+        }
+        /* Individual glow effects */
+        .btn-module:hover { border-color: #38bdf8; box-shadow: 0 0 20px rgba(56, 189, 248, 0.3); }
+        .btn-dpp:hover { border-color: #a855f7; box-shadow: 0 0 20px rgba(168, 85, 247, 0.3); }
+        .btn-test:hover { border-color: #f43f5e; box-shadow: 0 0 20px rgba(244, 63, 94, 0.3); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>MY MISTAKES 🔥</h1>
+        <p>Select a section to track your errors</p>
+    </header>
+
+    <div class="menu-container">
+        <a href="module.html" class="menu-btn btn-module">📚 MODULE</a>
+        <a href="dpp.html" class="menu-btn btn-dpp">📝 DPP</a>
+        <a href="test.html" class="menu-btn btn-test">⏳ TEST</a>
+    </div>
+</div>
+
+</body>
+</html> 
+
+HP
