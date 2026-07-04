@@ -84,42 +84,26 @@
         .mistake-card-row img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
         .menu-action-trigger { position: absolute; top: 6px; right: 8px; color: #94a3b8; background: none; border: none; font-size: 1.1rem; cursor: pointer; padding: 2px 6px; z-index: 10; }
-        .dropdown-menu-list { display: none; position: absolute; top: 30px; right: 8px; background: #1e1e30; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); z-index: 100; width: 120px; }
-        .dropdown-menu-list button { width: 100%; background: none; border: none; color: #cbd5e1; padding: 8px 12px; text-align: left; font-size: 0.8rem; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+        .dropdown-menu-list { display: none; position: absolute; top: 30px; right: 8px; background: #1e1e30; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); z-index: 100; width: 110px; }
+        .dropdown-menu-list button { width: 100%; background: none; border: none; color: #cbd5e1; padding: 8px 10px; text-align: left; font-size: 0.8rem; cursor: pointer; }
         .dropdown-menu-list button:hover { background: rgba(255,255,255,0.08); color: #fff; }
         .dropdown-menu-list button.del-action { color: #f43f5e; }
 
-        /* Lightbox Layout */
-        .lightbox-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; align-items: center; justify-content: center; }
-        .lightbox-modal img { max-width: 95%; max-height: 90vh; object-fit: contain; border-radius: 6px; }
-        .lightbox-close { position: absolute; top: 15px; right: 15px; color: #fff; font-size: 2rem; cursor: pointer; background: rgba(255,255,255,0.1); border: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        /* Fullscreen Lightbox Context */
+        .lightbox-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; }
+        .lightbox-modal img { max-width: 95%; max-height: 95%; object-fit: contain; border-radius: 4px; }
+        .lightbox-close { position: absolute; top: 15px; right: 20px; color: white; font-size: 2rem; background: none; border: none; cursor: pointer; }
 
-        /* Theme-matched Custom App Modals Engine */
-        .app-modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px);
-            z-index: 3000; align-items: center; justify-content: center; padding: 20px;
-        }
-        .app-modal-card {
-            background: #1e1b4b; border: 1px solid rgba(255,255,255,0.12);
-            width: 100%; max-width: 420px; border-radius: 20px; padding: 22px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); animation: popupReveal 0.25s ease-out;
-        }
-        @keyframes popupReveal { from { transform: scale(0.92); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-        
-        .app-modal-card h4 { font-size: 1.15rem; font-weight: 600; margin-bottom: 12px; color: #38bdf8; }
-        .app-modal-card p { font-size: 0.9rem; color: #cbd5e1; margin-bottom: 16px; line-height: 1.4; }
-        
-        .app-modal-input {
-            width: 100%; padding: 12px 14px; background: rgba(0,0,0,0.25);
-            border: 1px solid rgba(255,255,255,0.1); border-radius: 10px;
-            color: #fff; font-size: 0.95rem; outline: none; margin-bottom: 18px; transition: border-color 0.2s;
-        }
-        .app-modal-input:focus { border-color: #a855f7; }
-        
-        .app-modal-actions { display: flex; justify-content: flex-end; gap: 12px; }
-        .modal-btn { padding: 10px 18px; border-radius: 8px; font-weight: 600; border: none; cursor: pointer; font-size: 0.85rem; transition: background 0.2s; }
-        .modal-btn-cancel { background: rgba(255,255,255,0.08); color: #cbd5e1; }
+        /* Reusable UI Modals Base styling */
+        .custom-app-modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); z-index: 5000; align-items: center; justify-content: center; }
+        .custom-app-modal-card { background: #1e1e2f; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; width: 85%; max-width: 380px; padding: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        .custom-app-modal-card h4 { font-size: 1.1rem; color: #38bdf8; margin-bottom: 8px; }
+        .custom-app-modal-card p { font-size: 0.85rem; color: #94a3b8; margin-bottom: 12px; line-height: 1.4; }
+        .custom-app-modal-input { width: 100%; padding: 10px 12px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; font-size: 0.9rem; outline: none; margin-bottom: 15px; }
+        .custom-app-modal-input:focus { border-color: #38bdf8; }
+        .custom-app-modal-actions { display: flex; justify-content: flex-end; gap: 10px; }
+        .modal-btn { padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; border: none; transition: 0.2s; }
+        .modal-btn-cancel { background: rgba(255,255,255,0.05); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.1); }
         .modal-btn-cancel:hover { background: rgba(255,255,255,0.15); color: #fff; }
         .modal-btn-primary { background: linear-gradient(135deg, #a855f7, #7c3aed); color: #fff; }
         .modal-btn-primary:hover { opacity: 0.9; }
@@ -127,162 +111,129 @@
         .modal-btn-danger:hover { background: #f43f5e; }
 
         #camera-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; flex-direction: column; align-items: center; justify-content: center; gap: 20px; }
-        #video { width: 90%; max-width: 500px; border-radius: 15px; }
+        #video { width: 90%; max-width: 500px; border-radius: 12px; border: 2px solid rgba(255,255,255,0.2); background: #000; }
+        .camera-controls { display: flex; gap: 15px; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="page-header">
-        <h1 id="page-title">MODULE SECTION</h1>
+        <h1>Advanced Module Manager</h1>
     </div>
 
     <div class="subject-tabs">
-        <button class="tab-btn active" onclick="switchSubject('PHYSICS')">PHYSICS</button>
-        <button class="tab-btn" onclick="switchSubject('CHEMISTRY')">CHEMISTRY</button>
-        <button class="tab-btn" onclick="switchSubject('MATHS')">MATHS</button>
+        <div class="tab-btn active" onclick="switchSubject('Physics')">Physics</div>
+        <div class="tab-btn" onclick="switchSubject('Chemistry')">Chemistry</div>
+        <div class="tab-btn" onclick="switchSubject('Maths')">Maths</div>
     </div>
 
-    <div class="chapter-section-header">Chapters available: <span style="font-size: 0.75rem; color:#94a3b8; font-weight: normal; margin-left: 5px;">(Long-press or Right-click to Manage)</span></div>
-    <div class="chapters-container" id="chapters-list-wrapper"></div>
+    <div class="chapter-section-header">Select Module Chapter Segment:</div>
+    <div class="chapters-container" id="chapters-list-node"></div>
 
     <div class="upload-section" id="upload-panel-box">
-        <p>Upload new entries to: <b id="current-loc" style="color:#38bdf8; text-transform: uppercase;">MODULE > PHYSICS</b></p>
+        <p style="font-size: 1.05rem; font-weight: 600; margin-bottom: 5px;">Capture or Upload Entry Ledger</p>
+        <p style="font-size: 0.8rem; color: #94a3b8;">Choose tracking index before initializing file input stream.</p>
         <div class="upload-btn-wrapper">
-            <button class="action-btn camera-btn" onclick="openCamera()">📸 Open Camera</button>
-            <button class="action-btn file-btn" onclick="document.getElementById('file-input').click()">📁 Upload Photo</button>
-            <input type="file" id="file-input" accept="image/*" onchange="handleFileUpload(event)">
+            <button class="action-btn camera-btn" onclick="openDeviceCameraStream()">📷 Use Camera</button>
+            <button class="action-btn file-btn" onclick="document.getElementById('file-input-stream').click()">📁 Device Files</button>
         </div>
+        <input type="file" id="file-input-stream" accept="image/*">
     </div>
 
     <div class="results-container-block" id="results-display-area">
         <div class="viewing-header">
-            <h3>Questions for: <span id="active-target-chapter" style="color: #a855f7;">None</span></h3>
-            <button class="exit-view-btn" onclick="resetToUploadMode()">Back to Uploads ⬆</button>
+            <div>
+                <span style="font-size: 0.8rem; color: #94a3b8; display: block; text-transform: uppercase; font-weight: bold; letter-spacing: 0.5px;">Viewing Chapter</span>
+                <span id="active-target-chapter" style="font-size: 1.1rem; font-weight: bold; color: #fff;">None Selected</span>
+            </div>
+            <button class="exit-view-btn" onclick="resetToUploadMode()">← Back</button>
         </div>
-        <div class="mistakes-row-list" id="mistakes-container"></div>
+        <div class="mistakes-row-list" id="mistakes-cards-container"></div>
     </div>
 </div>
 
-<a href="index.html" class="floating-home-btn" title="Go to Home">🏠</a>
-<button class="floating-add-btn" onclick="triggerChapterModal()" title="Add New Chapter">+</button>
+<a href="index.html" class="floating-home-btn" title="Back to Dashboard">🏠</a>
+<button class="floating-add-btn" onclick="triggerChapterCreationModal()">+</button>
 
-<div class="app-modal-overlay" id="custom-app-modal">
-    <div class="app-modal-card">
-        <h4 id="modal-title">Title Text</h4>
-        <p id="modal-desc">Description text guide goes here.</p>
-        <input type="text" class="app-modal-input" id="modal-input-field" placeholder="Type here...">
-        <div class="app-modal-actions" id="modal-actions-box"></div>
+<div class="custom-app-modal-overlay" id="custom-app-modal">
+    <div class="custom-app-modal-card">
+        <h4 id="modal-title">Title</h4>
+        <p id="modal-desc">Description</p>
+        <input type="text" class="custom-app-modal-input" id="modal-input-field">
+        <div class="custom-app-modal-actions" id="modal-actions-box"></div>
+    </div>
+</div>
+
+<div id="camera-modal">
+    <video id="video" autoplay playsinline></video>
+    <div class="camera-controls">
+        <button class="modal-btn modal-btn-cancel" onclick="closeDeviceCameraStream()">Close</button>
+        <button class="modal-btn modal-btn-primary" onclick="captureSnapshotFromStream()">Capture</button>
     </div>
 </div>
 
 <div class="lightbox-modal" id="lightbox" onclick="closeFullscreen()">
     <button class="lightbox-close">&times;</button>
-    <img id="lightbox-img" src="" alt="Zoomed view">
-</div>
-
-<div id="camera-modal">
-    <video id="video" autoplay playsinline></video>
-    <div style="display: flex; gap: 20px;">
-        <button class="action-btn file-btn" onclick="captureSnapshot()">⚡ Click Photo</button>
-        <button class="action-btn camera-btn" onclick="closeCamera()" style="background: #ef4444;">Cancel</button>
-    </div>
+    <img id="lightbox-img" src="">
 </div>
 
 <script>
-    const CURRENT_MAIN_PAGE = 'MODULE'; 
-    let currentSubjectTab = 'PHYSICS';
+    // System Local Database Initialization Engines
+    let db;
+    let currentSubjectTab = 'Physics';
     let currentSelectedChapter = 'NONE';
-    let db = null;
-    let streamRef = null;
+    let localStream = null;
+    let isSavingFileLock = false; // MOBILE ATOMIC DOUBLE TRIGGER GATEWAY LOCK
 
-    const getChaptersKey = () => `ch_${CURRENT_MAIN_PAGE}_${currentSubjectTab}`;
-
-    const dbRequest = indexedDB.open("MyMistakesDB", 1);
-    dbRequest.onupgradeneeded = function(e) {
-        db = e.target.result;
-        if (!db.objectStoreNames.contains("mistakes")) {
-            db.createObjectStore("mistakes", { keyPath: "id", autoIncrement: true });
+    const request = indexedDB.open("ModuleMistakesDatabase", 2);
+    request.onupgradeneeded = function(e) {
+        const database = e.target.result;
+        if (!database.objectStoreNames.contains("mistakes")) {
+            database.createObjectStore("mistakes", { keyPath: "id", autoIncrement: true });
         }
     };
-    dbRequest.onsuccess = function(e) {
+    request.onsuccess = function(e) {
         db = e.target.result;
         loadChaptersList();
-        
-        // Global overlay click dismiss engines
-        document.addEventListener('click', function(event) {
-            if (!event.target.classList.contains('menu-action-trigger')) {
-                document.querySelectorAll('.dropdown-menu-list').forEach(m => m.style.display = 'none');
-            }
-            if (!event.target.closest('.ch-btn')) {
-                document.querySelectorAll('.ch-dropdown-menu').forEach(m => m.style.display = 'none');
-            }
-        });
     };
 
-    // Central Controller for Stylized Custom Theme Modals
-    function showCustomModal({ title, desc, hasInput, defaultValue, placeholder, confirmClass, confirmText, onConfirm }) {
-        const overlay = document.getElementById('custom-app-modal');
-        const t = document.getElementById('modal-title');
-        const d = document.getElementById('modal-desc');
-        const inp = document.getElementById('modal-input-field');
-        const actions = document.getElementById('modal-actions-box');
-
-        t.innerText = title;
-        d.innerText = desc || '';
-        
-        if (hasInput) {
-            inp.style.display = 'block';
-            inp.value = defaultValue || '';
-            inp.placeholder = placeholder || '';
-        } else {
-            inp.style.display = 'none';
-        }
-
-        actions.innerHTML = `
-            <button class="modal-btn modal-btn-cancel" onclick="hideCustomModal()">Cancel</button>
-            <button class="modal-btn ${confirmClass || 'modal-btn-primary'}" id="modal-confirm-trigger-btn">${confirmText || 'Confirm'}</button>
-        `;
-
-        document.getElementById('modal-confirm-trigger-btn').onclick = function() {
-            const value = inp.value;
-            hideCustomModal();
-            if (onConfirm) onConfirm(value);
-        };
-
-        overlay.style.display = 'flex';
-        if(hasInput) setTimeout(() => inp.focus(), 50);
+    function getChaptersKey() {
+        return `module_chapters_${currentSubjectTab.toLowerCase()}`;
     }
 
-    function hideCustomModal() {
-        document.getElementById('custom-app-modal').style.display = 'none';
+    function switchSubject(sub) {
+        currentSubjectTab = sub;
+        document.querySelectorAll('.subject-tabs .tab-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.innerText === sub);
+        });
+        resetToUploadMode();
     }
 
     function loadChaptersList() {
-        const wrapper = document.getElementById('chapters-list-wrapper');
+        const container = document.getElementById('chapters-list-node');
+        container.innerHTML = '';
         let chapters = JSON.parse(localStorage.getItem(getChaptersKey())) || [];
-        if(chapters.length === 0) {
-            wrapper.innerHTML = `<p style="color: #94a3b8; font-size: 0.85rem;">No chapters created yet. Click the '+' button below to add one.</p>`;
+        
+        if (chapters.length === 0) {
+            container.innerHTML = `<p style="font-size:0.8rem; color:#94a3b8; font-style:italic;">No custom chapters assigned. Use the floating "+" option to add.</p>`;
             return;
         }
-        
-        wrapper.innerHTML = '';
+
         chapters.forEach((ch, idx) => {
-            const block = document.createElement('div');
-            block.className = 'ch-btn-wrapper';
-            block.innerHTML = `
-                <button class="ch-btn ${currentSelectedChapter === ch ? 'active' : ''}" 
-                        id="ch-trigger-${idx}">
-                        ${ch}
-                </button>
+            const wrapper = document.createElement('div');
+            wrapper.className = 'ch-btn-wrapper';
+            
+            const activeClass = (currentSelectedChapter === ch) ? 'active' : '';
+            wrapper.innerHTML = `
+                <button class="ch-btn ${activeClass}" id="ch-trigger-${idx}">${ch}</button>
                 <div class="ch-dropdown-menu" id="ch-menu-${idx}">
                     <button onclick="triggerRenameChapter('${ch}')">✏️ Rename</button>
                     <button class="del-action" onclick="triggerDeleteChapter('${ch}')">🗑️ Delete</button>
                 </div>
             `;
-            wrapper.appendChild(block);
+            container.appendChild(wrapper);
 
-            // Hook Event Listeners for Complex Long Press & Context Clicks
             const btn = document.getElementById(`ch-trigger-${idx}`);
             let holdTimer = null;
 
@@ -293,136 +244,23 @@
                 document.getElementById(`ch-menu-${idx}`).style.display = 'block';
             };
 
-            // Desktop Right-Click
             btn.addEventListener('contextmenu', triggerMenuAction);
-
-            // Mobile/Touch Long Press Config
             btn.addEventListener('touchstart', (e) => {
-                holdTimer = setTimeout(() => {
-                    triggerMenuAction(e);
-                    holdTimer = null;
-                }, 600); // 0.6 seconds barrier hold
-            }, { passive: true });
-
-            btn.addEventListener('touchend', () => {
-                if (holdTimer) {
-                    clearTimeout(holdTimer);
-                    selectAndViewChapter(ch);
-                }
-            });
-
-            btn.addEventListener('touchmove', () => { if (holdTimer) clearTimeout(holdTimer); });
-            btn.addEventListener('click', (e) => {
-                // Standalone click routing for safety
-                if (document.getElementById(`ch-menu-${idx}`).style.display !== 'block') {
-                    selectAndViewChapter(ch);
-                }
+                holdTimer = setTimeout(() => { triggerMenuAction(e); holdTimer = null; }, 600);
+            }, { passive: false });
+            btn.addEventListener('touchend', () => { if(holdTimer) { clearTimeout(holdTimer); holdTimer = null; } });
+            btn.addEventListener('click', () => {
+                if(document.getElementById(`ch-menu-${idx}`).style.display === 'block') return;
+                selectAndViewChapter(ch);
             });
         });
     }
-    function triggerChapterModal() {
-        showCustomModal({
-            title: "Create New Chapter",
-            desc: "Please enter the title of the new chapter section below:",
-            hasInput: true,
-            placeholder: "e.g., Kinematics, Thermodynamics...",
-            onConfirm: function(chName) {
-                if (chName && chName.trim() !== "") {
-                    chName = chName.trim();
-                    let chapters = JSON.parse(localStorage.getItem(getChaptersKey())) || [];
-                    if (!chapters.includes(chName)) {
-                        chapters.push(chName);
-                        localStorage.setItem(getChaptersKey(), JSON.stringify(chapters));
-                        loadChaptersList();
-                    } else {
-                        showCustomModal({ title: "Error", desc: "This chapter section already exists!", confirmText: "OK" });
-                    }
-                }
-            }
-        });
-    }
 
-    // Advanced Chapter Management Sub-Systems
-    function triggerRenameChapter(oldName) {
-        showCustomModal({
-            title: "Rename Chapter",
-            desc: `Enter a new distinct name for "${oldName}":`,
-            hasInput: true,
-            defaultValue: oldName,
-            onConfirm: function(newName) {
-                if (!newName || newName.trim() === "" || newName.trim() === oldName) return;
-                newName = newName.trim();
-
-                let chapters = JSON.parse(localStorage.getItem(getChaptersKey())) || [];
-                if (chapters.includes(newName)) {
-                    showCustomModal({ title: "Conflict Error", desc: "A chapter with that name already exists.", confirmText: "OK" });
-                    return;
-                }
-
-                // Update Name in localStorage Array list
-                const idx = chapters.indexOf(oldName);
-                if (idx !== -1) chapters[idx] = newName;
-                localStorage.setItem(getChaptersKey(), JSON.stringify(chapters));
-
-                // Batch migration engine updates inside IndexedDB records
-                const transaction = db.transaction(["mistakes"], "readwrite");
-                const store = transaction.objectStore("mistakes");
-                store.getAll().onsuccess = function(e) {
-                    const items = e.target.result;
-                    items.forEach(item => {
-                        if (item.mainTab === CURRENT_MAIN_PAGE && item.subjectTab === currentSubjectTab && item.chapterName === oldName) {
-                            item.chapterName = newName;
-                            store.put(item);
-                        }
-                    });
-                };
-                
-                transaction.oncomplete = function() {
-                    if (currentSelectedChapter === oldName) {
-                        currentSelectedChapter = newName;
-                        document.getElementById('active-target-chapter').innerText = newName;
-                    }
-                    loadChaptersList();
-                    renderMistakes();
-                };
-            }
-        });
-    }
-
-    function triggerDeleteChapter(chName) {
-        showCustomModal({
-            title: "Delete Chapter Section?",
-            desc: `Are you sure you want to completely erase "${chName}"? All logged questions contained inside will be permanently deleted too.`,
-            hasInput: false,
-            confirmClass: "modal-btn-danger",
-            confirmText: "Delete Section",
-            onConfirm: function() {
-                let chapters = JSON.parse(localStorage.getItem(getChaptersKey())) || [];
-                chapters = chapters.filter(c => c !== chName);
-                localStorage.setItem(getChaptersKey(), JSON.stringify(chapters));
-
-                // Database Wipe Engine for all mapped entries inside this deleted Chapter
-                const transaction = db.transaction(["mistakes"], "readwrite");
-                const store = transaction.objectStore("mistakes");
-                store.getAll().onsuccess = function(e) {
-                    const items = e.target.result;
-                    items.forEach(item => {
-                        if (item.mainTab === CURRENT_MAIN_PAGE && item.subjectTab === currentSubjectTab && item.chapterName === chName) {
-                            store.delete(item.id);
-                        }
-                    });
-                };
-
-                transaction.oncomplete = function() {
-                    if (currentSelectedChapter === chName) {
-                        resetToUploadMode();
-                    } else {
-                        loadChaptersList();
-                    }
-                };
-            }
-        });
-    }
+    // Window Context Reset Actions
+    window.addEventListener('click', () => {
+        document.querySelectorAll('.ch-dropdown-menu').forEach(m => m.style.display = 'none');
+        document.querySelectorAll('.dropdown-menu-list').forEach(m => m.style.display = 'none');
+    });
 
     function selectAndViewChapter(ch) {
         currentSelectedChapter = ch;
@@ -440,209 +278,386 @@
         document.getElementById('results-display-area').style.display = 'none';
     }
 
-    function switchSubject(sub) {
-        document.querySelectorAll('.subject-tabs .tab-btn').forEach(b => b.classList.remove('active'));
-        event.target.classList.add('active');
-        currentSubjectTab = sub;
-        resetToUploadMode();
-        document.getElementById('current-loc').innerText = `${CURRENT_MAIN_PAGE} > ${currentSubjectTab}`;
-        loadChaptersList();
+    // Modal Control Modules
+    function showCustomModal({ title, desc, hasInput, defaultValue, placeholder, confirmText, confirmClass, onConfirm }) {
+        const overlay = document.getElementById('custom-app-modal');
+        const t = document.getElementById('modal-title');
+        const d = document.getElementById('modal-desc');
+        const inp = document.getElementById('modal-input-field');
+        const actions = document.getElementById('modal-actions-box');
+
+        t.innerText = title;
+        d.innerText = desc || '';
+        if (hasInput) {
+            inp.style.display = 'block';
+            inp.value = defaultValue || '';
+            inp.placeholder = placeholder || '';
+        } else {
+            inp.style.display = 'none';
+        }
+
+        actions.innerHTML = `
+            <button class="modal-btn modal-btn-cancel" onclick="hideCustomModal()">Cancel</button>
+            <button class="modal-btn ${confirmClass || 'modal-btn-primary'}" id="modal-confirm-trigger-btn">${confirmText || 'Confirm'}</button>
+        `;
+
+        document.getElementById('modal-confirm-trigger-btn').onclick = function() {
+            const value = inp.value;
+            hideCustomModal();
+            if(onConfirm) onConfirm(value);
+        };
+        overlay.style.display = 'flex';
     }
 
-    function handlePhotoIngestion(imageBlob) {
+    function hideCustomModal() {
+        document.getElementById('custom-app-modal').style.display = 'none';
+    }
+
+    // Target Chapter Manipulation Logics
+    function triggerChapterCreationModal() {
         showCustomModal({
-            title: "Assign Chapter",
-            desc: "Enter the precise chapter name for this entry (Compulsory):",
+            title: "Create Chapter Tracker",
+            desc: "Assign a standard chapter heading reference (e.g., Electrostatics, Mole Concept):",
             hasInput: true,
             placeholder: "Enter chapter name...",
-            onConfirm: function(targetChapter) {
-                if (!targetChapter || targetChapter.trim() === "") {
-                    showCustomModal({ title: "Cancelled", desc: "Upload aborted due to missing chapter validation.", confirmText: "OK" });
+            onConfirm: function(val) {
+                if (!val || val.trim() === "") return;
+                let chapters = JSON.parse(localStorage.getItem(getChaptersKey())) || [];
+                if (chapters.includes(val.trim())) {
+                    showCustomModal({ title: "Conflict Error", desc: "A chapter reference with that label name already exists.", confirmText: "OK" });
                     return;
                 }
-                targetChapter = targetChapter.trim();
-                let chapters = JSON.parse(localStorage.getItem(getChaptersKey())) || [];
-
-                if (!chapters.includes(targetChapter)) {
-                    showCustomModal({
-                        title: "Create Section?",
-                        desc: `The section "${targetChapter}" does not exist. Would you like to create it?`,
-                        hasInput: false,
-                        confirmText: "Create Section",
-                        onConfirm: function() {
-                            chapters.push(targetChapter);
-                            localStorage.setItem(getChaptersKey(), JSON.stringify(chapters));
-                            loadChaptersList();
-                            promptForCaptionAndSave(imageBlob, targetChapter);
-                        }
-                    });
-                } else {
-                    promptForCaptionAndSave(imageBlob, targetChapter);
-                }
+                chapters.push(val.trim());
+                localStorage.setItem(getChaptersKey(), JSON.stringify(chapters));
+                loadChaptersList();
             }
         });
     }
 
+    function triggerRenameChapter(oldName) {
+        showCustomModal({
+            title: "Rename Chapter Label",
+            desc: `Enter a new label for "${oldName}":`,
+            hasInput: true,
+            defaultValue: oldName,
+            onConfirm: function(newName) {
+                if (!newName || newName.trim() === "" || newName.trim() === oldName) return;
+                newName = newName.trim();
+                let chapters = JSON.parse(localStorage.getItem(getChaptersKey())) || [];
+                if (chapters.includes(newName)) {
+                    showCustomModal({ title: "Conflict Error", desc: "A chapter with that name already exists.", confirmText: "OK" });
+                    return;
+                }
+                
+                const idx = chapters.indexOf(oldName);
+                if (idx !== -1) chapters[idx] = newName;
+                localStorage.setItem(getChaptersKey(), JSON.stringify(chapters));
+
+                // Update Name inside IndexedDB Records
+                const transaction = db.transaction(["mistakes"], "readwrite");
+                const store = transaction.objectStore("mistakes");
+                store.openCursor().onsuccess = function(e) {
+                    const cursor = e.target.result;
+                    if(cursor) {
+                        const data = cursor.value;
+                        if(data.subjectTab === currentSubjectTab && data.chapterName === oldName) {
+                            data.chapterName = newName;
+                            cursor.update(data);
+                        }
+                        cursor.continue();
+                    }
+                };
+                transaction.oncomplete = function() {
+                    if (currentSelectedChapter === oldName) currentSelectedChapter = newName;
+                    loadChaptersList();
+                    if (currentSelectedChapter === newName) renderMistakes();
+                };
+            }
+        });
+    }
+
+    function triggerDeleteChapter(name) {
+        showCustomModal({
+            title: "Delete Chapter Section?",
+            desc: `This will clear "${name}" along with all its logged questions data entries.`,
+            confirmText: "Delete Permanently",
+            confirmClass: "modal-btn-danger",
+            onConfirm: function() {
+                let chapters = JSON.parse(localStorage.getItem(getChaptersKey())) || [];
+                chapters = chapters.filter(c => c !== name);
+                localStorage.setItem(getChaptersKey(), JSON.stringify(chapters));
+
+                const transaction = db.transaction(["mistakes"], "readwrite");
+                const store = transaction.objectStore("mistakes");
+                store.openCursor().onsuccess = function(e) {
+                    const cursor = e.target.result;
+                    if(cursor) {
+                        const item = cursor.value;
+                        if(item.subjectTab === currentSubjectTab && item.chapterName === name) {
+                            store.delete(item.id);
+                        }
+                        cursor.continue();
+                    }
+                };
+                transaction.oncomplete = function() {
+                    if (currentSelectedChapter === name) resetToUploadMode();
+                    else loadChaptersList();
+                };
+            }
+        });
+    }
+
+    // Input Pipeline Routines
+    document.getElementById('file-input-stream').onchange = function(e) {
+        if (!e.target.files || e.target.files.length === 0) return;
+        routeDataStreamBlob(e.target.files[0]);
+        e.target.value = '';
+    };
+
+    function openDeviceCameraStream() {
+        const modal = document.getElementById('camera-modal');
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+            .then(stream => {
+                localStream = stream;
+                document.getElementById('video').srcObject = stream;
+                modal.style.display = 'flex';
+            })
+            .catch(err => {
+                alert("Camera initialization failed. Check dynamic permissions.");
+            });
+    }
+
+    function closeDeviceCameraStream() {
+        if(localStream) {
+            localStream.getTracks().forEach(track => track.stop());
+            localStream = null;
+        }
+        document.getElementById('camera-modal').style.display = 'none';
+    }
+
+    function captureSnapshotFromStream() {
+        const video = document.getElementById('video');
+        const canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        
+        canvas.toBlob(function(blob) {
+            closeDeviceCameraStream();
+            routeDataStreamBlob(blob);
+        }, 'image/jpeg', 0.9);
+    }
+
+    function routeDataStreamBlob(imageBlob) {
+        let chapters = JSON.parse(localStorage.getItem(getChaptersKey())) || [];
+        if (chapters.length === 0) {
+            showCustomModal({ title: "Operational Block", desc: "Please configure at least one tracking section before saving records.", confirmText: "OK" });
+            return;
+        }
+
+        if (currentSelectedChapter !== 'NONE') {
+            promptForCaptionAndSave(imageBlob, currentSelectedChapter);
+            return;
+        }
+
+        // Segment mapping array allocation structure logic
+        let rawOptionsHTML = '';
+        chapters.forEach(ch => { rawOptionsHTML += `<option value="${ch}">${ch}</option>`; });
+
+        showCustomModal({
+            title: "Select Destination Segment",
+            desc: "Specify target tracker boundary location:",
+            hasInput: false,
+            onConfirm: function() {
+                const selectionBox = document.getElementById('modal-chapter-select-dropdown');
+                let targetChapter = selectionBox ? selectionBox.value : chapters[0];
+                if (!targetChapter) return;
+
+                targetChapter = targetChapter.trim();
+                promptForCaptionAndSave(imageBlob, targetChapter);
+            }
+        });
+
+        const descField = document.getElementById('modal-desc');
+        descField.insertAdjacentHTML('afterend', `
+            <select id="modal-chapter-select-dropdown" class="custom-app-modal-input" style="display:block;">
+                ${rawOptionsHTML}
+            </select>
+        `);
+    }
+
+    // FIXED ASYNCHRONOUS LOCK IMPLEMENTATION FOR MOBILE CAPTURE DOUBLE TICKETS
     function promptForCaptionAndSave(imageBlob, targetChapter) {
         showCustomModal({
             title: "Add Caption",
-            desc: "Enter a question caption/note (Optional - Leave blank for automatic formatting):",
+            desc: "Enter a question index/note (Optional):",
             hasInput: true,
-            placeholder: "e.g., Advanced Multi-Correct Error",
+            placeholder: "e.g., Q.4 Integration Error",
             onConfirm: function(customCaption) {
-                saveMistakeToDB(imageBlob, targetChapter, customCaption ? customCaption.trim() : "");
+                if (isSavingFileLock) return;
+                isSavingFileLock = true;
+
+                const reader = new FileReader();
+                reader.readAsDataURL(imageBlob);
+                reader.onloadend = function() {
+                    saveMistakeToDB(reader.result, targetChapter, customCaption);
+                    setTimeout(() => { isSavingFileLock = false; }, 1000);
+                }
             }
         });
     }
 
-    function saveMistakeToDB(imageBlob, targetChapter, customCaption) {
+    function saveMistakeToDB(base64Data, targetChapter, userCaption) {
+        let indexValue = "Unspecified";
+        let titleValue = (userCaption && userCaption.trim() !== "") ? userCaption.trim() : "Mistake Entry Ledger Record";
+        
+        const extractedIndexMatch = titleValue.match(/^[qQ]\.?\s*(\d+)/);
+        if (extractedIndexMatch && extractedIndexMatch[1]) {
+            indexValue = extractedIndexMatch[1];
+        }
+
+        const dateObject = new Date();
+        const formattedDateString = dateObject.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+
+        const recordObject = {
+            subjectTab: currentSubjectTab,
+            chapterName: targetChapter,
+            image: base64Data,
+            questionIndex: indexValue,
+            questionTitle: titleValue,
+            dateAdded: formattedDateString,
+            isPinned: false
+        };
+
         const transaction = db.transaction(["mistakes"], "readwrite");
         const store = transaction.objectStore("mistakes");
-        
-        store.getAll().onsuccess = function(e) {
-            const totalInChapter = e.target.result.filter(item => 
-                item.mainTab === CURRENT_MAIN_PAGE && item.subjectTab === currentSubjectTab && item.chapterName === targetChapter
-            ).length;
-            const nextIndex = totalInChapter + 1;
-            const finalTitle = customCaption !== "" ? customCaption : `Question ${nextIndex}`;
-            const currentDate = new Date().toLocaleDateString('en-IN', {day: '2-digit', month: '2-digit', year: 'numeric'});
-
-            const reader = new FileReader();
-            reader.readAsDataURL(imageBlob);
-            reader.onloadend = function() {
-                const newItem = {
-                    mainTab: CURRENT_MAIN_PAGE, subjectTab: currentSubjectTab, chapterName: targetChapter,
-                    questionIndex: nextIndex, questionTitle: finalTitle, dateAdded: currentDate, image: reader.result, isPinned: false
-                };
-                
-                // Secondary isolated transaction sequence for preventing double triggers on active views
-                const addTrans = db.transaction(["mistakes"], "readwrite");
-                addTrans.objectStore("mistakes").add(newItem);
-                addTrans.oncomplete = function() {
-                    if(currentSelectedChapter === targetChapter) {
-                        renderMistakes();
-                    }
-                };
+        store.add(recordObject).onsuccess = function() {
+            if(currentSelectedChapter === targetChapter) {
+                renderMistakes();
+            } else {
+                selectAndViewChapter(targetChapter);
             }
         };
     }
 
+    // Card Row Action Modifiers
     function toggleDropdown(e, id) {
+        e.preventDefault();
         e.stopPropagation();
-        document.querySelectorAll('.dropdown-menu-list').forEach(m => {
-            if(m.id !== 'menu-' + id) m.style.display = 'none';
-        });
-        const targetMenu = document.getElementById('menu-' + id);
-        targetMenu.style.display = targetMenu.style.display === 'block' ? 'none' : 'block';
+        const state = document.getElementById(`menu-${id}`).style.display;
+        document.querySelectorAll('.dropdown-menu-list').forEach(m => m.style.display = 'none');
+        document.getElementById(`menu-${id}`).style.display = (state === 'block') ? 'none' : 'block';
     }
 
-    function deleteQuestion(id) {
-        showCustomModal({
-            title: "Confirm Deletion",
-            desc: "Are you sure you want to permanently delete this logged question? This action cannot be undone.",
-            hasInput: false,
-            confirmClass: "modal-btn-danger",
-            confirmText: "Delete",
-            onConfirm: function() {
-                db.transaction(["mistakes"], "readwrite").objectStore("mistakes").delete(id).onsuccess = function() {
-                    renderMistakes();
-                };
-            }
-        });
-    }
-
-    function editQuestionCaption(id, currentText) {
-        showCustomModal({
-            title: "Update Caption",
-            desc: "Modify the label or description note for this logged entry:",
-            hasInput: true,
-            defaultValue: currentText,
-            onConfirm: function(newCaption) {
-                if(newCaption !== null) {
-                    const transaction = db.transaction(["mistakes"], "readwrite");
-                    const store = transaction.objectStore("mistakes");
-                    store.get(id).onsuccess = function(e) {
-                        const data = e.target.result;
-                        data.questionTitle = newCaption.trim() !== "" ? newCaption.trim() : `Question ${data.questionIndex}`;
-                        store.put(data).onsuccess = function() { renderMistakes(); };
-                    };
-                }
-            }
-        });
-    }
-
+    // IndexedDB Subroutines for priority focus
     function togglePinQuestion(id) {
         const transaction = db.transaction(["mistakes"], "readwrite");
         const store = transaction.objectStore("mistakes");
         store.get(id).onsuccess = function(e) {
             const data = e.target.result;
             data.isPinned = !data.isPinned;
-            store.put(data).onsuccess = function() { renderMistakes(); };
+            store.put(data).onsuccess = function() {
+                renderMistakes();
+            };
         };
+    }
+
+    function editQuestionCaption(id, currentText) {
+        showCustomModal({
+            title: "Edit Metadata Note",
+            desc: "Modify question label description:",
+            hasInput: true,
+            defaultValue: currentText,
+            onConfirm: function(newText) {
+                if(!newText || newText.trim() === "" || newText.trim() === currentText) return;
+                
+                const transaction = db.transaction(["mistakes"], "readwrite");
+                const store = transaction.objectStore("mistakes");
+                store.get(id).onsuccess = function(e) {
+                    const data = e.target.result;
+                    data.questionTitle = newText.trim();
+                    
+                    const match = data.questionTitle.match(/^[qQ]\.?\s*(\d+)/);
+                    if(match && match[1]) data.questionIndex = match[1];
+                    
+                    store.put(data).onsuccess = function() {
+                        renderMistakes();
+                    };
+                };
+            }
+        });
+    }
+
+    function deleteQuestion(id) {
+        showCustomModal({
+            title: "Delete Entry?",
+            desc: "This will remove this mistake record permanently.",
+            confirmText: "Delete",
+            confirmClass: "modal-btn-danger",
+            onConfirm: function() {
+                const transaction = db.transaction(["mistakes"], "readwrite");
+                transaction.objectStore("mistakes").delete(id).onsuccess = function() {
+                    renderMistakes();
+                };
+            }
+        });
     }
 
     function openFullscreen(src) {
         document.getElementById('lightbox-img').src = src;
         document.getElementById('lightbox').style.display = 'flex';
     }
-    function closeFullscreen() { document.getElementById('lightbox').style.display = 'none'; }
 
-    async function openCamera() {
-        const modal = document.getElementById('camera-modal');
-        modal.style.display = 'flex';
-        try {
-            streamRef = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false });
-            document.getElementById('video').srcObject = streamRef;
-        } catch (err) { alert("Camera initialization failure."); closeCamera(); }
+    function closeFullscreen() {
+        document.getElementById('lightbox').style.display = 'none';
     }
-    function closeCamera() {
-        document.getElementById('camera-modal').style.display = 'none';
-        if(streamRef) streamRef.getTracks().forEach(t => t.stop());
-    }
-    function captureSnapshot() {
-        const video = document.getElementById('video');
-        const canvas = document.createElement('canvas');
-        canvas.width = video.videoWidth; canvas.height = video.videoHeight;
-        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-        canvas.toBlob(blob => { closeCamera(); handlePhotoIngestion(blob); }, 'image/jpeg', 0.85);
-    }
-    function handleFileUpload(e) { if (e.target.files[0]) { handlePhotoIngestion(e.target.files[0]); e.target.value = ''; } }
 
     function renderMistakes() {
-        const container = document.getElementById('mistakes-container');
+        const container = document.getElementById('mistakes-cards-container');
         container.innerHTML = '';
-        if (!db || currentSelectedChapter === 'NONE') return;
 
-        db.transaction(["mistakes"], "readonly").objectStore("mistakes").getAll().onsuccess = function(e) {
-            let filtered = e.target.result.filter(item => 
-                item.mainTab === CURRENT_MAIN_PAGE && item.subjectTab === currentSubjectTab && item.chapterName === currentSelectedChapter
-            );
-            if(filtered.length === 0) {
-                container.innerHTML = `<p style="color: #94a3b8; text-align: center; padding: 40px 0; font-size:0.9rem;">No logged questions found inside this chapter.</p>`;
-                return;
-            }
-            filtered.sort((a, b) => (b.isPinned || 0) - (a.isPinned || 0));
-            filtered.forEach(item => {
-                const card = document.createElement('div');
-                card.className = `mistake-card-row ${item.isPinned ? 'pinned' : ''}`;
-                card.innerHTML = `
-                    <div class="mistake-meta">
-                        <div class="mistake-index">${item.isPinned ? '📌' : '#'} Q.${item.questionIndex}</div>
-                        <div class="mistake-caption" title="${item.questionTitle}">${item.questionTitle}</div>
-                        <div class="mistake-date">${item.dateAdded}</div>
-                    </div>
-                    <button class="menu-action-trigger" onclick="toggleDropdown(event, ${item.id})">⋮</button>
-                    <div class="dropdown-menu-list" id="menu-${item.id}">
-                        <button onclick="togglePinQuestion(${item.id})">${item.isPinned ? '📍 Unpin' : '📌 Pin Card'}</button>
-                        <button onclick="editQuestionCaption(${item.id}, '${item.questionTitle}')">✏️ Edit</button>
-                        <button class="del-action" onclick="deleteQuestion(${item.id})">🗑️ Delete</button>
-                    </div>
-                    <div class="img-container-box" onclick="openFullscreen('${item.image}')">
-                        <img src="${item.image}" alt="Question Image">
-                    </div>
-                `;
-                container.appendChild(card);
-            });
+        const transaction = db.transaction(["mistakes"], "readonly");
+        const store = transaction.objectStore("mistakes");
+        const filtered = [];
+
+        store.openCursor().onsuccess = function(e) {
+            const cursor = e.target.result;
+            if(cursor) {
+                const item = cursor.value;
+                if(item.subjectTab === currentSubjectTab && item.chapterName === currentSelectedChapter) {
+                    filtered.push(item);
+                }
+                cursor.continue();
+            } else {
+                if(filtered.length === 0) {
+                    container.innerHTML = `<p style="text-align:center; color:#94a3b8; padding: 30px 0; font-size:0.9rem;">No entries found inside this track.</p>`;
+                    return;
+                }
+
+                filtered.sort((a,b) => (b.isPinned || 0) - (a.isPinned || 0));
+                filtered.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = `mistake-card-row ${item.isPinned ? 'pinned' : ''}`;
+                    card.innerHTML = `
+                        <div class="mistake-meta">
+                            <div class="mistake-index">${item.isPinned ? '📌' : '#'} Q.${item.questionIndex}</div>
+                            <div class="mistake-caption" title="${item.questionTitle}">${item.questionTitle}</div>
+                            <div class="mistake-date">${item.dateAdded}</div>
+                        </div>
+                        <button class="menu-action-trigger" onclick="toggleDropdown(event, ${item.id})">⋮</button>
+                        <div class="dropdown-menu-list" id="menu-${item.id}">
+                            <button onclick="togglePinQuestion(${item.id})">${item.isPinned ? '📍 Unpin' : '📌 Pin Card'}</button>
+                            <button onclick="editQuestionCaption(${item.id}, '${item.questionTitle}')">✏️ Edit</button>
+                            <button class="del-action" onclick="deleteQuestion(${item.id})">🗑️ Delete</button>
+                        </div>
+                        <div class="img-container-box" onclick="openFullscreen('${item.image}')">
+                            <img src="${item.image}" alt="Question Image">
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            };
         };
     }
 </script>
