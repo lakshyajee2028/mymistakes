@@ -225,7 +225,7 @@
         .text-btn:hover { box-shadow: 0 6px 20px rgba(14, 165, 233, 0.5), 0 0 10px rgba(14, 165, 233, 0.3); }
         input[type="file"] { display: none; }
 
-        /* Dual Floating Buttons */
+        /* Dual Floating Buttons (Symmetric & Balanced) */
         .floating-add-btn {
             position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; border-radius: 50%;
             background: linear-gradient(135deg, var(--neon-blue), #00b4d8); color: #000; border: none; font-size: 2.2rem; font-weight: bold;
@@ -235,9 +235,9 @@
         .floating-add-btn:hover { transform: scale(1.15) rotate(90deg); box-shadow: 0 0 30px rgba(0, 242, 254, 0.9); }
         .floating-add-btn:active { transform: scale(0.95); }
 
-        /* New Floating Back Arrow Button */
+        /* Modified Floating Back Arrow Button (Symmetrical to Add Button on Left) */
         .floating-back-btn {
-            position: fixed; bottom: 100px; right: 25px; width: 60px; height: 60px; border-radius: 50%;
+            position: fixed; bottom: 25px; left: 25px; width: 60px; height: 60px; border-radius: 50%;
             background: linear-gradient(135deg, var(--neon-purple), #7c3aed); color: #fff; border: none; font-size: 1.6rem;
             display: flex; align-items: center; justify-content: center; cursor: pointer; text-decoration: none;
             box-shadow: 0 0 20px rgba(157, 77, 221, 0.5); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 999;
@@ -392,9 +392,9 @@
     </div>
 
     <div class="subject-tabs">
-        <button class="tab-btn active" onclick="switchSubject('PHYSICS')">PHYSICS</button>
-        <button class="tab-btn" onclick="switchSubject('CHEMISTRY')">CHEMISTRY</button>
-        <button class="tab-btn" onclick="switchSubject('MATHS')">MATHS</button>
+        <button class="tab-btn active" onclick="switchSubject('PHYSICS', event)">PHYSICS</button>
+        <button class="tab-btn" onclick="switchSubject('CHEMISTRY', event)">CHEMISTRY</button>
+        <button class="tab-btn" onclick="switchSubject('MATHS', event)">MATHS</button>
     </div>
 
     <div class="chapter-section-header">Tests logged: <span style="font-size: 0.8rem; color:var(--text-muted); font-weight: normal; margin-left: 5px; text-transform: none;">(Long-press or Right-click to Rename/Delete)</span></div>
@@ -527,13 +527,14 @@
                         <span class="t-date">${tObj.date || 'No Date'}</span>
                 </button>
                 <div class="ch-dropdown-menu" id="ch-menu-${idx}">
-                    <button onclick="triggerRenameTest(${idx})">✏️ Rename</button>
-                    <button class="del-action" onclick="triggerDeleteTest(${idx})">🗑️ Delete</button>
+                    <button id="rename-act-${idx}">✏️ Rename</button>
+                    <button class="del-action" id="delete-act-${idx}">🗑️ Delete</button>
                 </div>
             `;
             wrapper.appendChild(block);
 
             const btn = document.getElementById(`ch-trigger-${idx}`);
+            let isLongPress = false;
             let holdTimer = null;
 
             const triggerMenuAction = (e) => {
@@ -542,12 +543,35 @@
                 document.getElementById(`ch-menu-${idx}`).style.display = 'block';
             };
 
+            // Setup dedicated actions inside dropdown menus safely
+            document.getElementById(`rename-act-${idx}`).onclick = (e) => { e.stopPropagation(); triggerRenameTest(idx); };
+            document.getElementById(`delete-act-${idx}`).onclick = (e) => { e.stopPropagation(); triggerDeleteTest(idx); };
+
             btn.addEventListener('contextmenu', triggerMenuAction);
-            btn.addEventListener('touchstart', (e) => { holdTimer = setTimeout(() => { triggerMenuAction(e); holdTimer = null; }, 600); }, { passive: true });
-            btn.addEventListener('touchend', () => { if (holdTimer) { clearTimeout(holdTimer); selectAndViewChapter(tObj.name); } });
+            
+            btn.addEventListener('touchstart', (e) => { 
+                isLongPress = false;
+                holdTimer = setTimeout(() => { 
+                    isLongPress = true; 
+                    triggerMenuAction(e); 
+                }, 600); 
+            }, { passive: true });
+            
+            btn.addEventListener('touchend', (e) => { 
+                if (holdTimer) clearTimeout(holdTimer); 
+                if (!isLongPress && document.getElementById(`ch-menu-${idx}`).style.display !== 'block') {
+                    selectAndViewChapter(tObj.name);
+                }
+            });
+            
             btn.addEventListener('touchmove', () => { if (holdTimer) clearTimeout(holdTimer); });
-            btn.addEventListener('click', () => {
-                if (document.getElementById(`ch-menu-${idx}`).style.display !== 'block') selectAndViewChapter(tObj.name);
+            
+            btn.addEventListener('click', (e) => {
+                // Ignore regular click if triggered by simulated tap to prevent duplicate rendering
+                if(e.pointerType === '') return; 
+                if (document.getElementById(`ch-menu-${idx}`).style.display !== 'block') {
+                    selectAndViewChapter(tObj.name);
+                }
             });
         });
     }
@@ -658,10 +682,12 @@
         document.getElementById('results-display-area').style.display = 'none';
     }
 
-    function switchSubject(sub) {
+    function switchSubject(sub, event) {
         currentSubjectTab = sub;
         document.querySelectorAll('.subject-tabs .tab-btn').forEach(b => b.classList.remove('active'));
-        event.target.classList.add('active');
+        if (event && event.target) {
+            event.target.classList.add('active');
+        }
         resetToUploadMode();
         document.getElementById('current-loc').innerText = `${CURRENT_MAIN_PAGE} > ${currentSubjectTab}`;
         loadChaptersList();
@@ -775,7 +801,6 @@
             desc: "Enter a question caption/note (Optional):",
             numInputs: 1, placeholder1: "e.g., Q.14 Calculation Error",
             onConfirm: function(customCaption) {
-                // FIXED: FileReader asynchronous transaction issue resolved by passing it correctly
                 const reader = new FileReader();
                 reader.readAsDataURL(imageBlob);
                 reader.onloadend = function() {
@@ -786,7 +811,6 @@
     }
 
     function saveMistakeToDB(base64Image, targetChapter, customCaption) {
-        // FIXED: Open a fresh transaction AFTER the file is fully ready
         const transaction = db.transaction(["mistakes"], "readwrite");
         const store = transaction.objectStore("mistakes");
         
@@ -900,7 +924,6 @@
         };
     }
 
-    // FIXED: Collapse function checking both display none/empty string
     function toggleSolutionCollapse(id) {
         const solBox = document.getElementById(`sol-box-${id}`);
         const btn = document.getElementById(`sol-btn-${id}`);
