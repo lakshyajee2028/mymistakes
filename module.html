@@ -13,9 +13,8 @@
         .container { max-width: 900px; margin: 0 auto; }
         
         /* Header Configuration */
-        .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .back-btn { text-decoration: none; color: #38bdf8; font-weight: bold; background: rgba(255,255,255,0.05); padding: 8px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; }
-        h1 { font-size: 1.8rem; background: linear-gradient(45deg, #38bdf8, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .page-header { display: flex; justify-content: center; align-items: center; margin-bottom: 20px; position: relative; }
+        h1 { font-size: 1.8rem; background: linear-gradient(45deg, #38bdf8, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; }
 
         /* Tabs and Buttons */
         .subject-tabs { display: flex; gap: 8px; margin-bottom: 15px; }
@@ -48,6 +47,14 @@
         .camera-btn { background: linear-gradient(45deg, #f97316, #ea580c); color: white; }
         .file-btn { background: linear-gradient(45deg, #10b981, #059669); color: white; }
         input[type="file"] { display: none; }
+
+        /* Dual Floating Buttons Config */
+        .floating-home-btn {
+            position: fixed; bottom: 25px; left: 25px; width: 55px; height: 55px; border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; border: none; font-size: 1.4rem;
+            display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 20px rgba(37, 99, 235, 0.5); transition: transform 0.2s; z-index: 999; text-decoration: none;
+        }
+        .floating-home-btn:hover { transform: scale(1.1); }
 
         .floating-add-btn {
             position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; border-radius: 50%;
@@ -127,7 +134,6 @@
 
 <div class="container">
     <div class="page-header">
-        <a href="index.html" class="back-btn">⬅ Home</a>
         <h1 id="page-title">MODULE SECTION</h1>
     </div>
 
@@ -158,6 +164,7 @@
     </div>
 </div>
 
+<a href="index.html" class="floating-home-btn" title="Go to Home">🏠</a>
 <button class="floating-add-btn" onclick="triggerChapterModal()" title="Add New Chapter">+</button>
 
 <div class="app-modal-overlay" id="custom-app-modal">
@@ -335,7 +342,7 @@
         });
     }
 
-    // New Advanced Chapter Management Sub-Systems
+    // Advanced Chapter Management Sub-Systems
     function triggerRenameChapter(oldName) {
         showCustomModal({
             title: "Rename Chapter",
@@ -491,6 +498,7 @@
     function saveMistakeToDB(imageBlob, targetChapter, customCaption) {
         const transaction = db.transaction(["mistakes"], "readwrite");
         const store = transaction.objectStore("mistakes");
+        
         store.getAll().onsuccess = function(e) {
             const totalInChapter = e.target.result.filter(item => 
                 item.mainTab === CURRENT_MAIN_PAGE && item.subjectTab === currentSubjectTab && item.chapterName === targetChapter
@@ -506,9 +514,14 @@
                     mainTab: CURRENT_MAIN_PAGE, subjectTab: currentSubjectTab, chapterName: targetChapter,
                     questionIndex: nextIndex, questionTitle: finalTitle, dateAdded: currentDate, image: reader.result, isPinned: false
                 };
+                
+                // Secondary isolated transaction sequence for preventing double triggers on active views
                 const addTrans = db.transaction(["mistakes"], "readwrite");
-                addTrans.objectStore("mistakes").add(newItem).onsuccess = function() {
-                    if(currentSelectedChapter === targetChapter) renderMistakes();
+                addTrans.objectStore("mistakes").add(newItem);
+                addTrans.oncomplete = function() {
+                    if(currentSelectedChapter === targetChapter) {
+                        renderMistakes();
+                    }
                 };
             }
         };
@@ -634,5 +647,4 @@
     }
 </script>
 </body>
-</html> 
-
+</html>
